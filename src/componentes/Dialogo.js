@@ -9,7 +9,7 @@ class Dialogo extends Component {
   
   render() {
     return (
-      <div className={`dialogo dialogo_medio ${this.props.deveExibir ? "dialogo_ativo" : ""}`}>
+      <div className={`dialogo dialogo_medio ${this.props.deveSerExibido ? "dialogo_ativo" : ""}`}>
         <div className="dialogo__container">
           <div className="dialogo__cabecalho">
             <h2 className="dialogo__titulo">Titulo do diálogo</h2>
@@ -21,10 +21,10 @@ class Dialogo extends Component {
           </div>
 
           <div className="dialogo__rodape">
-            <button className="botao botao_cor-info" type="button">Salvar</button>
-            <button className="botao botao_cor-cinza botao_contorno" onClick={this.props.fecharModal} type="submit">Cancelar</button>
+            <button className="botao botao_cor-info" type="button" onClick={this.props.acaoPrincipal}>Salvar</button>
+            <button className="botao botao_cor-cinza botao_contorno" type="submit" onClick={this.props.fecharDialogo}>Cancelar</button>
           </div>
-          <button className="dialogo__botao-fechar" type="button" aria-label="Fechar diálogo" onClick={this.props.fecharModal}>
+          <button className="dialogo__botao-fechar" type="button" aria-label="Fechar diálogo" onClick={this.props.fecharDialogo}>
             <i className="fa fa-times" aria-label="hidden"></i>
           </button>
         </div>

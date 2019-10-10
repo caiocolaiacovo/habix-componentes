@@ -18,6 +18,10 @@ class App extends Component {
     this.setState({deveExibirModal: false});
   }
 
+  acaoPrincipal() {
+    console.log('Executou ação principal no diálogo');
+  }
+
   render() {
     return (
     <div className="App">
@@ -84,8 +88,11 @@ class App extends Component {
       </nav>
       <main className="pagina__conteudo-container pagina__conteudo-container_maximizado">
         <section className="container container_com-fundo container_com-margem">
-          <Dialogo deveExibir={this.state.deveExibirModal} fecharModal={() => this.fecharModal() }></Dialogo>
-          <button className="botao botao_medio" onClick={() => this.exibirModal() }>Exibir modal</button>
+          <Dialogo 
+            deveSerExibido={this.state.deveExibirModal} 
+            fecharDialogo={() => this.fecharModal() } 
+            acaoPrincipal={() => this.acaoPrincipal() } />
+          <button className="botao botao_medio" onClick={() => this.exibirModal() }>Exibir diálogo</button>
         </section>
       </main>
     </div>
