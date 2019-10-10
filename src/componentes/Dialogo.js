@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 class Dialogo extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
 
   componentWillUpdate(nextProps) {
