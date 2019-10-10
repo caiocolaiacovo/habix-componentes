@@ -4,9 +4,18 @@ class Dialogo extends Component {
   constructor(props) {
     super(props);
 
-    document.body.style.overflowY = 'hidden';
+    this.state = {};
   }
-  
+
+  componentWillUpdate(nextProps) {
+    console.log('document.body.style.overflowY: ', document.body.style.overflowY);
+
+    if (nextProps.deveSerExibido)
+      document.body.style.overflowY = 'hidden';
+    else
+      document.body.style.overflowY = '';
+  }
+
   render() {
     return (
       <div className={`dialogo dialogo_medio ${this.props.deveSerExibido ? "dialogo_ativo" : ""}`}>
