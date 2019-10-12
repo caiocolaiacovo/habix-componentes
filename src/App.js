@@ -101,6 +101,7 @@ class App extends Component {
       <main className="pagina__conteudo-container pagina__conteudo-container_maximizado">
         <section className="container container_com-fundo container_com-margem">
           <Dialogo 
+            tamanho='mini'
             deveSerExibido={this.state.deveExibirDialogo} 
             fecharDialogo={() => this.fecharDialogo() } 
             acaoPrincipal={() => this.acaoPrincipal() } 

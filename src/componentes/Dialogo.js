@@ -44,11 +44,11 @@ class Dialogo extends Component {
   }
   
   render() {
-    const { corpo: Corpo, rodape: Rodape } = this.props;
+    const { corpo: Corpo, rodape: Rodape, tamanho } = this.props;
     const atributosDoCabecalho = this.props.deveSerExibido ? { tabIndex: 0 } : {};
 
     return (
-      <div className={`dialogo dialogo_medio ${this.props.deveSerExibido ? "dialogo_ativo" : ""}`}>
+      <div className={`dialogo ${ !!tamanho ? `dialogo_${tamanho}` : ''} ${this.props.deveSerExibido ? "dialogo_ativo" : ''}`}>
         <div className="dialogo__container" ref={this.refContainerDoDialogo} {...atributosDoCabecalho} onFocus={() => this.manterOFocoNoDialogo()}>
           <div className="dialogo__cabecalho" ref={this.refCabecalhoDoDialogo} {...atributosDoCabecalho}>
             <h2 className="dialogo__titulo">Titulo do diálogo</h2>
