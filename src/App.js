@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dialogo from './componentes/Dialogo';
 import { BotaoComTexto, BotaoComTextoEIcone, BotaoComIcone } from './componentes/Botao';
+import Mensagem from './componentes/Mensagem';
 
 class App extends Component {
   constructor() {
@@ -200,6 +201,29 @@ class App extends Component {
             <label htmlFor="senha">Senha</label>
             <input id="senha" type="password"/>
           </form>
+          <Mensagem 
+            titulo='Titulo da mensagem' 
+            texto='Um bom texto para a mensagem'/>
+          <Mensagem 
+            tipo='info' 
+            titulo='Titulo da mensagem' 
+            texto='Um bom texto para a mensagem' 
+            icone='fa-info-circle'/>
+          <Mensagem 
+            tipo='sucesso' 
+            titulo='Tudo certo!' 
+            texto='Inscrição realizada com sucesso!' 
+            icone='fa-check-circle'/>
+          <Mensagem 
+            tipo='erro' 
+            titulo='Identificamos um erro:' 
+            texto='Parece que você não tem permissão para executar esta ação =(' 
+            icone='fa-times-circle'/>
+          <Mensagem 
+            tipo='atencao' 
+            titulo='Vamos prosseguir' 
+            texto='Parece que seu endereço está incompleto. Será necessário preencher ao realizar sua primeira compra' 
+            icone='fa-exclamation-circle'/>
         </section>
       </main>
     </div>

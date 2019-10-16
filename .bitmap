@@ -25,5 +25,17 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "viniciuslima.habix/mensagem@0.0.1": {
+        "files": [
+            {
+                "relativePath": "src/componentes/Mensagem.js",
+                "test": false,
+                "name": "Mensagem.js"
+            }
+        ],
+        "mainFile": "src/componentes/Mensagem.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "version": "14.4.1"
 }
