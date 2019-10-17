@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import Dialogo from './componentes/Dialogo';
 import { BotaoComTexto, BotaoComTextoEIcone, BotaoComIcone } from './componentes/Botao';
 import Mensagem from './componentes/Mensagem';
+import MensagemFlutuante from './componentes/MensagemFlutuante';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      deveExibirDialogo: false
+      deveExibirDialogo: false,
+      deveExibirMensagemFlutuante: false
     };
   }
 
   exibirDialogo = () => this.setState({deveExibirDialogo: true});
   fecharDialogo = () => this.setState({deveExibirDialogo: false});
+
+  exibirMensagemFlutuante = () => this.setState({deveExibirMensagemFlutuante: true});
   
   acaoPrincipal() {
     console.log('Esta ação foi disparada pelo dialogo, mas é controlada pelo elemento pai dele.');
@@ -201,6 +205,8 @@ class App extends Component {
             <label htmlFor="senha">Senha</label>
             <input id="senha" type="password"/>
           </form>
+        </section>
+        <section className="container container_com-fundo container_com-margem">
           <Mensagem 
             titulo='Titulo da mensagem' 
             texto='Um bom texto para a mensagem'/>
@@ -224,6 +230,8 @@ class App extends Component {
             titulo='Vamos prosseguir' 
             texto='Parece que seu endereço está incompleto. Será necessário preencher ao realizar sua primeira compra' 
             icone='fa-exclamation-circle'/>
+            <MensagemFlutuante deveSerExibido={this.state.deveExibirMensagemFlutuante} />
+            <BotaoComTexto onClick={() => this.exibirMensagemFlutuante() }>Exibir mensagem flutuante</BotaoComTexto>
         </section>
       </main>
     </div>
