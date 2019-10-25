@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Dialogo extends Component {
   constructor(props) {
@@ -44,15 +45,15 @@ class Dialogo extends Component {
   }
   
   render() {
-    const { corpo: Corpo, rodape: Rodape, tamanho } = this.props;
+    const { corpo: Corpo, rodape: Rodape, tamanho, titulo, subTitulo } = this.props;
     const atributosDoCabecalho = this.props.deveSerExibido ? { tabIndex: 0 } : {};
 
     return (
       <div className={`dialogo ${ !!tamanho ? `dialogo_${tamanho}` : ''} ${this.props.deveSerExibido ? "dialogo_ativo" : ''}`}>
         <div className="dialogo__container" ref={this.refContainerDoDialogo} {...atributosDoCabecalho} onFocus={() => this.manterOFocoNoDialogo()}>
           <div className="dialogo__cabecalho" ref={this.refCabecalhoDoDialogo} {...atributosDoCabecalho}>
-            <h2 className="dialogo__titulo">Titulo do diálogo</h2>
-            <p className="dialogo__subtitulo">Descrição do título</p>
+            <h2 className="dialogo__titulo">{titulo}</h2>
+            <p className="dialogo__subtitulo">{subTitulo}</p>
           </div>
           <div className="dialogo__corpo">
             <Corpo></Corpo>
@@ -61,7 +62,7 @@ class Dialogo extends Component {
             <Rodape></Rodape>
           </div>
           <button className="dialogo__botao-fechar" type="button" aria-label="Fechar diálogo" onClick={this.props.fecharDialogo}>
-            <i className="fa fa-times" aria-label="hidden"></i>
+            <i className="fa far fa-times" aria-label="hidden"></i>
           </button>
         </div>
         {this.props.deveSerExibido && <span tabIndex="0" onFocus={() => this.refCabecalhoDoDialogo.current.focus()}></span>}
@@ -69,5 +70,16 @@ class Dialogo extends Component {
     );
   }
 }
+
+Dialogo.propTypes = {
+  tamanho: PropTypes.string,
+  deveSerExibido: PropTypes.bool,
+  fecharDialogo: PropTypes.func,
+  acaoPrincipal: PropTypes.func,
+  titulo: PropTypes.string,
+  subTitulo: PropTypes.string,
+  corpo: PropTypes.elementType,
+  rodape: PropTypes.elementType
+};
 
 export default Dialogo;

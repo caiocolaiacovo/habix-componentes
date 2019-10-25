@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Dialogo from './componentes/Dialogo';
 import { BotaoComTexto, BotaoComTextoEIcone, BotaoComIcone } from './componentes/Botao';
-import Mensagem from './componentes/Mensagem';
-import MensagemFlutuante from './componentes/MensagemFlutuante';
+import { Mensagem, MensagemFlutuante } from './componentes/Mensagem';
 
 class App extends Component {
   constructor() {
@@ -111,6 +110,8 @@ class App extends Component {
             deveSerExibido={this.state.deveExibirDialogo} 
             fecharDialogo={() => this.fecharDialogo() } 
             acaoPrincipal={() => this.acaoPrincipal() } 
+            titulo='Um titulo qualquer'
+            subTitulo='Um subtitulo qualquer'
             corpo={this.CorpoDoDialogo}
             rodape={this.RodapeDoDialogo} />
           <button className="botao botao_medio" onClick={() => this.exibirDialogo() }>Exibir diálogo</button>
@@ -230,8 +231,11 @@ class App extends Component {
             titulo='Vamos prosseguir' 
             texto='Parece que seu endereço está incompleto. Será necessário preencher ao realizar sua primeira compra' 
             icone='fa-exclamation-circle'/>
-            <MensagemFlutuante deveSerExibido={this.state.deveExibirMensagemFlutuante} />
-            <BotaoComTexto onClick={() => this.exibirMensagemFlutuante() }>Exibir mensagem flutuante</BotaoComTexto>
+          <MensagemFlutuante 
+            deveSerExibido={this.state.deveExibirMensagemFlutuante}
+            titulo='Titulo da mensagem flutuante'
+            texto='Uma mensagem flutuante qualquer' />
+          <BotaoComTexto onClick={() => this.exibirMensagemFlutuante() }>Exibir mensagem flutuante</BotaoComTexto>
         </section>
       </main>
     </div>

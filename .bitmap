@@ -13,7 +13,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "viniciuslima.habix/dialogo@1.1.0": {
+    "viniciuslima.habix/dialogo@1.2.3": {
         "files": [
             {
                 "relativePath": "src/componentes/Dialogo.js",
@@ -25,7 +25,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "viniciuslima.habix/mensagem@0.0.1": {
+    "viniciuslima.habix/mensagem@0.0.2": {
         "files": [
             {
                 "relativePath": "src/componentes/Mensagem.js",
@@ -37,5 +37,5 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "version": "14.4.1"
+    "version": "14.4.2"
 }
