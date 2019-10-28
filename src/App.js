@@ -3,27 +3,24 @@ import { Provider } from 'react-redux'
 import store from './store';
 import Dialogo from './componentes/Dialogo';
 import { BotaoComTexto, BotaoComTextoEIcone, BotaoComIcone } from './componentes/Botao';
-import { Mensagem, MensagemFlutuante } from './componentes/Mensagem';
-import teste from './componentes/NotificadorDeMensagemFlutuante';
+import Mensagem from './componentes/Mensagem';
+import MensagensFlutuantes, { CriadorDeMensagemFlutuante } from './componentes/MensagensFlutuantes';
+// import CriadorDeMensagemFlutuante from './componentes/CriadorDeMensagemFlutuante';
  
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      deveExibirDialogo: false,
-      deveExibirMensagemFlutuante: false
+      deveExibirDialogo: false
     };
   }
 
   exibirDialogo = () => this.setState({deveExibirDialogo: true});
   fecharDialogo = () => this.setState({deveExibirDialogo: false});
-
-  exibirMensagemFlutuante = () => this.setState({deveExibirMensagemFlutuante: true});
   
   acaoPrincipal() {
     console.log('Esta ação foi disparada pelo dialogo, mas é controlada pelo elemento pai dele.');
-    teste.mostrarId();
   }
 
   CorpoDoDialogo = () => {
@@ -47,6 +44,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <MensagensFlutuantes />
           <header className="cabecalho-sistema cabecalho-sistema_fixo">
             <button className="botao-hamburguer" aria-label="Menu principal">
               <span className="botao-hamburguer__linha-1"></span>
@@ -235,11 +233,9 @@ class App extends Component {
                 titulo='Vamos prosseguir' 
                 texto='Parece que seu endereço está incompleto. Será necessário preencher ao realizar sua primeira compra' 
                 icone='fa-exclamation-circle'/>
-              <MensagemFlutuante 
-                deveSerExibido={this.state.deveExibirMensagemFlutuante}
-                titulo='Titulo da mensagem flutuante'
-                texto='Uma mensagem flutuante qualquer' />
-              <BotaoComTexto onClick={() => this.exibirMensagemFlutuante() }>Exibir mensagem flutuante</BotaoComTexto>
+            </section>
+            <section className="container container_com-fundo container_com-margem">
+              <BotaoComTexto onClick={() => CriadorDeMensagemFlutuante.exibirUmaNotificacao({texto: 'teste', titulo: 'titulo'}) }>Exibir mensagem flutuante</BotaoComTexto>
             </section>
           </main>
         </div>
