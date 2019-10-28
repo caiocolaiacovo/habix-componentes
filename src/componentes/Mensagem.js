@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import teste from './NotificadorDeMensagemFlutuante';
 
 const Mensagem = ({tipo = 'info', titulo, texto, icone = 'fa-info-circle'}) => {
   return (
@@ -36,6 +37,7 @@ class MensagemFlutuante extends Component {
 
   fechar() {
     this.setState({deveSerExibido: false});
+    teste.mostrarId();
   }
 
   render(){
