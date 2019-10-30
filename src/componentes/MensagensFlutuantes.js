@@ -24,8 +24,9 @@ class MensagemFlutuante extends Component {
     this.setState({deveSerExibido: true});
 
     setTimeout(() => {
-      this.setState({deveSerExibido: false});
-    }, 7000)
+      //this.setState({deveSerExibido: false});
+      this.props.callback(this.props.id);
+    }, 15000)
   }
 
   fechar() {
@@ -57,7 +58,7 @@ class ContainerDeMensagensFlutuantes extends Component {
   constructor(props) {
     super(props);
 
-    criador.registrarContainer(this);
+    gerenciadorDeMensagem.registrarContainer(this);
 
     this.state = {
       notificacoes: []
@@ -65,13 +66,25 @@ class ContainerDeMensagensFlutuantes extends Component {
   }
 
   criarMensagemDeSucesso(props) {
-    this.setState({notificacoes: [{...props}]});
+    const notificacoes = [...this.state.notificacoes];
+    const id = Date.now();
+    
+    notificacoes.push({...props, id})
+
+    this.setState({notificacoes});
+  }
+
+  removerElemento(id) {
+    const notificacoes = this.state.notificacoes.filter(notificacao => notificacao.id !== id);
+    this.setState({notificacoes});
   }
 
   render(){
     return (
       <ul className="mensagens-flutuantes">
-        {this.state.notificacoes.map(notificacao => <MensagemFlutuante/>)}
+        {this.state.notificacoes.map(notificacao => 
+          <MensagemFlutuante key={notificacao.id} callback={this.removerElemento.bind(this)} {...notificacao} />
+        )}
       </ul>
     );
   }
@@ -79,32 +92,29 @@ class ContainerDeMensagensFlutuantes extends Component {
 
 class GerenciadorDeMensagem {
   constructor() {
-    this.notificacoes = [];
-    this.add = () => {};
+    this.container = {};
+  }
 
-    console.log('criou');
+  registrarContainer(container) {
+    this.container = container;
   }
 
   criarMensagemDeSucesso({texto, titulo}) {
-    this.add();
+    this.container.criarMensagemDeSucesso({texto, titulo});
   }
 
   criar({add}) {
     console.log('registrou');
     this.add = add;
   }
-
-  registrarContainer(container) {
-    this.container = container;
-  }
 }
 
 ContainerDeMensagensFlutuantes.propTypes = {
 };
 
-const criador = new GerenciadorDeMensagem();
+const gerenciadorDeMensagem = new GerenciadorDeMensagem();
 
 export { 
   ContainerDeMensagensFlutuantes as default,
-  criador as GerenciadorDeMensagem
+  gerenciadorDeMensagem as GerenciadorDeMensagem
 };
