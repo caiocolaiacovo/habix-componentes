@@ -4,8 +4,7 @@ import store from './store';
 import Dialogo from './componentes/Dialogo';
 import { BotaoComTexto, BotaoComTextoEIcone, BotaoComIcone } from './componentes/Botao';
 import Mensagem from './componentes/Mensagem';
-import MensagensFlutuantes, { CriadorDeMensagemFlutuante } from './componentes/MensagensFlutuantes';
-// import CriadorDeMensagemFlutuante from './componentes/CriadorDeMensagemFlutuante';
+import ContainerDeMensagensFlutuantes, { GerenciadorDeMensagem } from './componentes/MensagensFlutuantes';
  
 class App extends Component {
   constructor() {
@@ -44,7 +43,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <MensagensFlutuantes />
+          <ContainerDeMensagensFlutuantes />
           <header className="cabecalho-sistema cabecalho-sistema_fixo">
             <button className="botao-hamburguer" aria-label="Menu principal">
               <span className="botao-hamburguer__linha-1"></span>
@@ -235,7 +234,7 @@ class App extends Component {
                 icone='fa-exclamation-circle'/>
             </section>
             <section className="container container_com-fundo container_com-margem">
-              <BotaoComTexto onClick={() => CriadorDeMensagemFlutuante.exibirUmaNotificacao({texto: 'teste', titulo: 'titulo'}) }>Exibir mensagem flutuante</BotaoComTexto>
+              <BotaoComTexto onClick={() => GerenciadorDeMensagem.criarMensagemDeSucesso({texto: 'teste', titulo: 'titulo'}) }>Exibir mensagem flutuante</BotaoComTexto>
             </section>
           </main>
         </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import teste from './CriadorDeMensagemFlutuante';
 
 class MensagemFlutuante extends Component {
   constructor(props) {
@@ -54,18 +53,18 @@ class MensagemFlutuante extends Component {
   }
 }
 
-class MensagensFlutuantes extends Component { 
+class ContainerDeMensagensFlutuantes extends Component { 
   constructor(props) {
     super(props);
 
-    criador.registrar({add: this.exibirUmaNotificacao.bind(this)});
+    criador.registrarContainer(this);
 
     this.state = {
       notificacoes: []
     };
   }
 
-  exibirUmaNotificacao(props) {
+  criarMensagemDeSucesso(props) {
     this.setState({notificacoes: [{...props}]});
   }
 
@@ -78,7 +77,7 @@ class MensagensFlutuantes extends Component {
   }
 }
 
-class CriadorDeMensagemFlutuante {
+class GerenciadorDeMensagem {
   constructor() {
     this.notificacoes = [];
     this.add = () => {};
@@ -86,22 +85,26 @@ class CriadorDeMensagemFlutuante {
     console.log('criou');
   }
 
-  exibirUmaNotificacao({texto, titulo}) {
+  criarMensagemDeSucesso({texto, titulo}) {
     this.add();
   }
 
-  registrar({add}) {
+  criar({add}) {
     console.log('registrou');
     this.add = add;
   }
+
+  registrarContainer(container) {
+    this.container = container;
+  }
 }
 
-MensagensFlutuantes.propTypes = {
+ContainerDeMensagensFlutuantes.propTypes = {
 };
 
-const criador = new CriadorDeMensagemFlutuante();
+const criador = new GerenciadorDeMensagem();
 
 export { 
-  MensagensFlutuantes as default,
-  criador as CriadorDeMensagemFlutuante
+  ContainerDeMensagensFlutuantes as default,
+  criador as GerenciadorDeMensagem
 };
