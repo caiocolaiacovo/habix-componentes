@@ -234,7 +234,10 @@ class App extends Component {
                 icone='fa-exclamation-circle'/>
             </section>
             <section className="container container_com-fundo container_com-margem">
-              <BotaoComTexto onClick={() => GerenciadorDeMensagem.criarMensagemDeSucesso({texto: 'teste', titulo: 'titulo'}) }>Exibir mensagem flutuante</BotaoComTexto>
+              <BotaoComTexto onClick={() => GerenciadorDeMensagem.criarMensagemDeInfo({texto: 'Veja se está tudo certo antes de prosseguir', titulo: 'Confira as informações'}) } cor='info'>Exibir mensagem de info</BotaoComTexto>
+              <BotaoComTexto onClick={() => GerenciadorDeMensagem.criarMensagemDeErro({texto: 'Parece que algo errado não está certo =(', titulo: 'Ops...'}) } cor='perigo'>Exibir mensagem de erro</BotaoComTexto>
+              <BotaoComTexto onClick={() => GerenciadorDeMensagem.criarMensagemDeSucesso({texto: 'Deu tudo certo =)', titulo: 'Sucesso!'}) } cor='sucesso'>Exibir mensagem de sucesso</BotaoComTexto>
+              <BotaoComTexto onClick={() => GerenciadorDeMensagem.criarMensagemDeAtencao({texto: 'Algumas informações estão faltando, mas você pode adicionar depois.', titulo: 'Vamos prosseguir'}) } cor='atencao'>Exibir mensagem de atenção</BotaoComTexto>
             </section>
           </main>
         </div>

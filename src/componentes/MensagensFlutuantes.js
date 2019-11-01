@@ -6,39 +6,38 @@ class MensagemFlutuante extends Component {
     super(props);
 
     this.state = {
-      deveSerExibido: false
+      deveSerExibido: false,
+      timeOut: 0,
     };
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (!prevProps.deveSerExibido && this.props.deveSerExibido) {
-  //     this.setState({deveSerExibido: true});
-
-  //     setTimeout(() => {
-  //       this.setState({deveSerExibido: false});
-  //     }, 7000)
-  //   }
-  // }
-
   componentDidMount() {
-    this.setState({deveSerExibido: true});
+    const timeOut = setTimeout(() => {
+      this.fechar();
+    }, 7000);
 
-    setTimeout(() => {
-      //this.setState({deveSerExibido: false});
-      this.props.callback(this.props.id);
-    }, 15000)
+    this.setState({deveSerExibido: true, timeOut});
   }
 
   fechar() {
+    clearTimeout(this.state.timeOut);
+
     this.setState({deveSerExibido: false});
+    this.destruir();
+  }
+
+  destruir() {
+    setTimeout(() => {
+      this.props.callback(this.props.id);
+    }, 400)
   }
 
   render() {
-    const { titulo, texto } = this.props;
+    const { texto, titulo, tipo } = this.props;
     const { deveSerExibido } = this.state;
 
     return (
-      <li className={`mensagem mensagem_flutuante ${ deveSerExibido ? 'mensagem_ativa' : 'mensagem_inativa'} mensagem_cor-info`} role="alert" tabIndex="0">
+      <li className={`mensagem mensagem_flutuante ${ deveSerExibido ? 'mensagem_ativa' : 'mensagem_inativa'} mensagem_cor-${tipo}`} role="alert" tabIndex="0">
         <div className="mensagem__container-icone">
           <i className="fa fa-info-circle mensagem__icone" aria-hidden="true"></i>
         </div>
@@ -61,28 +60,28 @@ class ContainerDeMensagensFlutuantes extends Component {
     gerenciadorDeMensagem.registrarContainer(this);
 
     this.state = {
-      notificacoes: []
+      mensagens: []
     };
   }
 
-  criarMensagemDeSucesso(props) {
-    const notificacoes = [...this.state.notificacoes];
+  criarMensagem({texto, titulo, tempoDeExibicao, tipo}) {
+    const mensagens = [...this.state.mensagens];
     const id = Date.now();
     
-    notificacoes.push({...props, id})
+    mensagens.push({texto, titulo, tempoDeExibicao, tipo, id})
 
-    this.setState({notificacoes});
+    this.setState({mensagens});
   }
 
   removerElemento(id) {
-    const notificacoes = this.state.notificacoes.filter(notificacao => notificacao.id !== id);
-    this.setState({notificacoes});
+    const mensagens = this.state.mensagens.filter(notificacao => notificacao.id !== id);
+    this.setState({mensagens});
   }
 
   render(){
     return (
       <ul className="mensagens-flutuantes">
-        {this.state.notificacoes.map(notificacao => 
+        {this.state.mensagens.map(notificacao => 
           <MensagemFlutuante key={notificacao.id} callback={this.removerElemento.bind(this)} {...notificacao} />
         )}
       </ul>
@@ -93,19 +92,43 @@ class ContainerDeMensagensFlutuantes extends Component {
 class GerenciadorDeMensagem {
   constructor() {
     this.container = {};
+    this.tempoDeExibicao = 7000;
   }
 
   registrarContainer(container) {
     this.container = container;
   }
 
-  criarMensagemDeSucesso({texto, titulo}) {
-    this.container.criarMensagemDeSucesso({texto, titulo});
+  criarMensagemDeInfo(mensagem) {
+    this.container.criarMensagem({
+      ...mensagem, 
+      tempoDeExibicao: this.tempoDeExibicao,
+      tipo: 'info'
+    });
   }
 
-  criar({add}) {
-    console.log('registrou');
-    this.add = add;
+  criarMensagemDeSucesso(mensagem) {
+    this.container.criarMensagem({
+      ...mensagem, 
+      tempoDeExibicao: this.tempoDeExibicao,
+      tipo: 'sucesso'
+    });
+  }
+
+  criarMensagemDeErro(mensagem) {
+    this.container.criarMensagem({
+      ...mensagem, 
+      tempoDeExibicao: this.tempoDeExibicao,
+      tipo: 'erro'
+    });
+  }
+
+  criarMensagemDeAtencao(mensagem) {
+    this.container.criarMensagem({
+      ...mensagem, 
+      tempoDeExibicao: this.tempoDeExibicao,
+      tipo: 'atencao'
+    });
   }
 }
 

@@ -25,7 +25,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "viniciuslima.habix/mensagem@0.0.2": {
+    "viniciuslima.habix/mensagem@1.0.0": {
         "files": [
             {
                 "relativePath": "src/componentes/Mensagem.js",
@@ -37,5 +37,17 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "version": "14.4.2"
+    "viniciuslima.habix/mensagens-flutuantes@0.0.1": {
+        "files": [
+            {
+                "relativePath": "src/componentes/MensagensFlutuantes.js",
+                "test": false,
+                "name": "MensagensFlutuantes.js"
+            }
+        ],
+        "mainFile": "src/componentes/MensagensFlutuantes.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
+    "version": "14.4.3"
 }
