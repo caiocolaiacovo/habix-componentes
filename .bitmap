@@ -25,6 +25,18 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "viniciuslima.habix/link@1.0.0": {
+        "files": [
+            {
+                "relativePath": "src/componentes/Link.js",
+                "test": false,
+                "name": "Link.js"
+            }
+        ],
+        "mainFile": "src/componentes/Link.js",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "viniciuslima.habix/mensagem@1.0.0": {
         "files": [
             {

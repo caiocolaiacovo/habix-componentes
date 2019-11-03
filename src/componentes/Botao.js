@@ -77,8 +77,18 @@ const BotaoComIcone = ({visual, tamanho, cor, habilitado = true, tipo, onClick, 
   );
 }
 
+const BotaoLink = ({}) => {
+  
+}
+
+const BotaoInput = ({}) => {
+  
+}
+
 export {
   BotaoComTexto,
   BotaoComTextoEIcone,
-  BotaoComIcone
+  BotaoComIcone,
+  BotaoLink,
+  BotaoInput
 };
